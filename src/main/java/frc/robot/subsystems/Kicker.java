@@ -55,7 +55,7 @@ public class Kicker extends SubsystemBase {
             new FlyWheelConfig(motor)
                     .withDiameter(Inches.of(4))
                     .withMass(Pounds.of(1))
-                    .withTelemetry("Flywheel", TelemetryVerbosity.HIGH);
+                    .withTelemetry("kicker", TelemetryVerbosity.HIGH);
 
     private final FlyWheel kicker = new FlyWheel(flywheelConfig);
 

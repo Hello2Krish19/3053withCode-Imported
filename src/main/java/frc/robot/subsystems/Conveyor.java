@@ -54,7 +54,7 @@ public class Conveyor extends SubsystemBase {
             new FlyWheelConfig(motor)
                     .withDiameter(Inches.of(4))
                     .withMass(Pounds.of(1))
-                    .withTelemetry("Flywheel", TelemetryVerbosity.HIGH);
+                    .withTelemetry("conveyor", TelemetryVerbosity.HIGH);
 
     private final FlyWheel conveyor = new FlyWheel(flywheelConfig);
 
