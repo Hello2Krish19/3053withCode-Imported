@@ -160,11 +160,11 @@ public class RobotContainer
 
 
 
-    intakeArm.setDefaultCommand(intakeArm.stopCommand());
-    conveyor.setDefaultCommand(conveyor.stopCommand());
-    shooterFlywheel.setDefaultCommand(shooterFlywheel.stopCommand());
-    kicker.setDefaultCommand(kicker.stopCommand());
-    intakeRollers.setDefaultCommand(intakeRollers.stopCommand());
+    intakeArm.setDefaultCommand(intakeArm.setDegreeCommand(45));
+    conveyor.setDefaultCommand(conveyor.setDutyCycle(0.2));
+    shooterFlywheel.setDefaultCommand(shooterFlywheel.setVelocityCommand(RPM.of(3000)));
+    kicker.setDefaultCommand(kicker.setVelocityCommand(RPM.of(3000)));
+    intakeRollers.setDefaultCommand(intakeRollers.setVelocityCommand(RPM.of(3000)));
   }
 
   /**

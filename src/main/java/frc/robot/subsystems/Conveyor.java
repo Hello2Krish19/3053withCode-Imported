@@ -39,7 +39,7 @@ public class Conveyor extends SubsystemBase {
                     .withGearing(new MechanismGearing(GearBox.fromReductionStages(1)))
                     //don't change gears for SA comp //acutal gear ratio: 22:18 TT
                     .withIdleMode(MotorMode.COAST)
-                    .withTelemetry("FlywheelMotor", TelemetryVerbosity.HIGH)
+                    .withTelemetry("conveyor", TelemetryVerbosity.HIGH)
                     .withStatorCurrentLimit(Amps.of(60))//For flywheel, stator current lm can be 60A/80A //talon fx can handle up to 260A
                     .withMotorInverted(true)
                     .withFeedforward(new SimpleMotorFeedforward(0.17, 0.117, 0.01)) //thanks 3561!
@@ -56,42 +56,42 @@ public class Conveyor extends SubsystemBase {
                     .withMass(Pounds.of(1))
                     .withTelemetry("Flywheel", TelemetryVerbosity.HIGH);
 
-    private final FlyWheel flywheel = new FlyWheel(flywheelConfig);
+    private final FlyWheel conveyor = new FlyWheel(flywheelConfig);
 
     public Conveyor() {
     }
 
     public AngularVelocity getRPM() {
-        return flywheel.getSpeed();
+        return conveyor.getSpeed();
     }
 
     public Command setVelocityommand(AngularVelocity velocity) {
-        return flywheel.setSpeed(velocity);
+        return conveyor.setSpeed(velocity);
     }
 
     public void setVelocitySetpoint(AngularVelocity velocity)
     {
-        flywheel.setMechanismVelocitySetpoint(velocity);
+        conveyor.setMechanismVelocitySetpoint(velocity);
     }
 
     public Command setDutyCycle(double dutyCycle) {
-        return flywheel.set(dutyCycle);
+        return conveyor.set(dutyCycle);
     }
 
     public Command stopCommand() {
-        return flywheel.set(0);
+        return conveyor.set(0);
     }
 
     public void periodic() {
-        flywheel.updateTelemetry();
+        conveyor.updateTelemetry();
     }
 
     public void simulationPeriodic() {
-        flywheel.simIterate();
+        conveyor.simIterate();
     }
 
     public void setDutyCycleSetpoint(double dutyCycle) {
-         flywheel.setDutyCycleSetpoint(0);
+         conveyor.setDutyCycleSetpoint(0);
     }
 
 }

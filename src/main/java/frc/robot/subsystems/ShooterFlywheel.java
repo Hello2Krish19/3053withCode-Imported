@@ -66,7 +66,7 @@ public class ShooterFlywheel extends SubsystemBase {
         return flywheel.getSpeed();
     }
 
-    public Command setVelocityommand(AngularVelocity velocity) {
+    public Command setVelocityCommand(AngularVelocity velocity) {
         return flywheel.setSpeed(velocity);
     }
 

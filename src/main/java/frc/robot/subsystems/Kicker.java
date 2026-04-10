@@ -40,7 +40,7 @@ public class Kicker extends SubsystemBase {
                     .withGearing(new MechanismGearing(GearBox.fromReductionStages(1)))
                     //don't change gears for SA comp //acutal gear ratio: 22:18 TT
                     .withIdleMode(MotorMode.COAST)
-                    .withTelemetry("FlywheelMotor", TelemetryVerbosity.HIGH)
+                    .withTelemetry("kicker", TelemetryVerbosity.HIGH)
                     .withStatorCurrentLimit(Amps.of(60))//For flywheel, stator current lm can be 60A/80A //talon fx can handle up to 260A
                     .withMotorInverted(true)
                     .withFeedforward(new SimpleMotorFeedforward(0.17, 0.117, 0.01)) //thanks 3561!
@@ -57,42 +57,42 @@ public class Kicker extends SubsystemBase {
                     .withMass(Pounds.of(1))
                     .withTelemetry("Flywheel", TelemetryVerbosity.HIGH);
 
-    private final FlyWheel flywheel = new FlyWheel(flywheelConfig);
+    private final FlyWheel kicker = new FlyWheel(flywheelConfig);
 
     public Kicker() {
     }
 
     public AngularVelocity getRPM() {
-        return flywheel.getSpeed();
+        return kicker.getSpeed();
     }
 
-    public Command setVelocityommand(AngularVelocity velocity) {
-        return flywheel.setSpeed(velocity);
+    public Command setVelocityCommand(AngularVelocity velocity) {
+        return kicker.setSpeed(velocity);
     }
 
     public void setVelocitySetpoint(AngularVelocity velocity)
     {
-        flywheel.setMechanismVelocitySetpoint(velocity);
+        kicker.setMechanismVelocitySetpoint(velocity);
     }
 
     public Command setDutyCycle(double dutyCycle) {
-        return flywheel.set(dutyCycle);
+        return kicker.set(dutyCycle);
     }
 
     public Command stopCommand() {
-        return flywheel.set(0);
+        return kicker.set(0);
     }
 
     public void periodic() {
-        flywheel.updateTelemetry();
+        kicker.updateTelemetry();
     }
 
     public void simulationPeriodic() {
-        flywheel.simIterate();
+        kicker.simIterate();
     }
 
     public void setDutyCycleSetpoint(double dutyCycle) {
-         flywheel.setDutyCycleSetpoint(0);
+         kicker.setDutyCycleSetpoint(0);
     }
 
 }
